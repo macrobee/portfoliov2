@@ -5,6 +5,7 @@ import About from './components/about/about.component';
 
 import './App.scss';
 import Tech from './components/tools/tools.component';
+import Projects from './components/projects/projects.component';
 
 
 
@@ -14,6 +15,7 @@ function App() {
 <Navigation />
 <About/>
 <Tech />
+<Projects />
       {/* <MovingBackgroundColors/> */}
     </div>
   );

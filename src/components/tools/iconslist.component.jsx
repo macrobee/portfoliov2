@@ -1,18 +1,18 @@
-import { ToolsContainer } from "./tools.styles.jsx";
+import { IconsListContainer, IconContainer } from "./iconslist.styles";
 
 
 const IconsList = (props) => {
     return (
-      <ToolsContainer className="icon-list">
+      <IconsListContainer>
         {props.list.map((tool) => {
           return (
-            <div className="icon-container" key={tool.key}>
+            <IconContainer key={tool.key}>
               {tool.icon}
               <p className="tool-name">{tool.name}</p>
-            </div>
+            </IconContainer>
           );
         })}
-      </ToolsContainer>
+      </IconsListContainer>
     );
   };
   

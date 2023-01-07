@@ -18,7 +18,7 @@ const About = () => {
         Hi, I'm <span className="my-name">Vivian</span>
       </h1>
       <div className="profile-info">
-        <img src="../../facesquare.png" alt="myself" width="200px" />
+        <img src="../../facesquare.png" alt="cartoon of myself" width="200px" />
         <p>
           I'm a self-taught front-end developer based in Toronto, Canada. My
           background in biology and education has fueled my curiosity for the
