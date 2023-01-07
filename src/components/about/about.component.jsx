@@ -9,7 +9,7 @@ const About = () => {
       whileInView={{ opacity: 1 }}
       transition={{
         ease: "linear",
-        duration: 2,
+        duration: 1,
       }}
       viewport={{ once: true }}
       className="page-contents"

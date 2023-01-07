@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { themeColors } from "../../colors/colors";
 
 export const ProjectContainer = styled.div`
-  width: max(300px, 50%);
   display: flex;
   justify-content: center;
   align-items: baseline;

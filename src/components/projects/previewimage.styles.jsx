@@ -4,5 +4,5 @@ import { themeColors } from "../../colors/colors";
 
 export const PreviewImage = styled.img`
 border-radius: 1rem;
-border: 2px solid ${themeColors};
+border: 2px solid ${themeColors.text};
 `

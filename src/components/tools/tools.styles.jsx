@@ -11,4 +11,5 @@ export const ToolsContainer = styled.div`
   border: 2px solid ${themeColors.text};
   border-radius: 10px;
   padding: 10px 20px;
+  box-sizing: border-box;
 `;

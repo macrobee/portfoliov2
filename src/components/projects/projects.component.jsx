@@ -1,6 +1,6 @@
+import {motion} from 'framer-motion';
 import ProjectList from "./projectlist.component";
-import { ProjectListContainer } from "./projectlist.styles";
-
+import { ProjectsSectionContainer } from "./projectlist.styles";
 
 const projectInfo = [
   {
@@ -46,11 +46,20 @@ goals and highlights the tasks with the closest deadlines. Task information is s
 
 const Projects = () => {
   return (
-    <div className="page-contents" id="project-section">
+    <ProjectsSectionContainer
+      as={motion.div}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{
+        ease: "linear",
+        duration: 1,
+      }}
+      viewport={{ once: true }}
+    >
       <h2>My recent projects</h2>
 
       <ProjectList list={projectInfo} />
-    </div>
+    </ProjectsSectionContainer>
   );
 };
 export default Projects;
