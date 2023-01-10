@@ -18,6 +18,7 @@ import { useInView } from "react-intersection-observer";
 import { useContext, useEffect } from "react";
 
 import { SectionContext } from "../../contexts/currentsectioncontext";
+import { ThemeContext } from "../../contexts/themecontext";
 
 import { ToolsContainer, ToolsSectionContainer } from "./tools.styles.jsx";
 
@@ -47,8 +48,8 @@ const toolsList = [
 
 function Tech() {
   const { updateSection } = useContext(SectionContext);
+  const {currentThemeColors} = useContext(ThemeContext);  
   const { ref, inView } = useInView({threshold: 0.2});
-
 
   useEffect(() => {
     updateSection("tech", inView);
@@ -67,7 +68,7 @@ function Tech() {
     >
       <h2>Tools I use</h2>
 
-      <ToolsContainer ref={ref}>
+      <ToolsContainer themeColors={currentThemeColors} ref={ref}>
         {/* <img src="" alt="image" /> */}
         <IconsList list={toolsList} />
       </ToolsContainer>

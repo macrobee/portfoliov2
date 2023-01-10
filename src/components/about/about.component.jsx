@@ -11,8 +11,8 @@ import {
   RoundImage,
   FlexDiv,
   StaggeredDiv,
-  LoadingBackground,
 } from "./about.styles";
+import { ThemeContext } from "../../contexts/themecontext";
 
 const itemMain = {
   hidden: { opacity: 0, y: 100, transition: { when: "afterChildren" } },
@@ -39,13 +39,15 @@ const grandChild = {
 };
 const About = () => {
   const { updateSection } = useContext(SectionContext);
+  const { currentThemeColors } = useContext(ThemeContext);
   const { ref, inView } = useInView({ threshold: 0.1 });
 
   useEffect(() => {
     updateSection("about", inView);
   }, [inView]);
+
   return (
-    <AboutSection id="about-section" ref={ref}>
+    <AboutSection themeColors={currentThemeColors} id="about-section" ref={ref}>
       <FlexDiv
         as={motion.div}
         initial={{ opacity: 0, y: 100 }}
@@ -59,7 +61,7 @@ const About = () => {
         <StaggeredDiv>
           <span>Hi,</span> <span>I'm</span>
         </StaggeredDiv>{" "}
-        <BigName>Vivian</BigName>
+        <BigName themeColors={currentThemeColors}>Vivian</BigName>
       </FlexDiv>
       <AboutContent
         as={motion.div}
@@ -76,7 +78,7 @@ const About = () => {
           I'm a self-taught front-end developer based in Toronto, Canada. My
           background in biology and education has fueled my curiosity for the
           world and given me a drive for learning how things work. I love
-          building, solving puzzles, and biking.
+          tinkering, solving puzzles, and biking.
         </motion.p>
       </AboutContent>
     </AboutSection>

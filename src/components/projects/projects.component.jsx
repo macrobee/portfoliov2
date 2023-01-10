@@ -55,6 +55,7 @@ const Projects = () => {
   useEffect(() => {
     updateSection('projects', inView);
   }, [inView]);
+  
   return (
     <ProjectsSectionContainer ref={ref} id="projects-section">
       <motion.h2

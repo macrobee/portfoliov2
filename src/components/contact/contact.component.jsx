@@ -13,6 +13,7 @@ import { LinksContainer } from "../projects/projectlist.styles";
 import { ReactComponent as LinkedInIcon } from "../../assets/linkedin.svg";
 import { ReactComponent as EmailIcon } from "../../assets/email.svg";
 import { ReactComponent as GithubIcon } from "../../assets/github.svg";
+import { ThemeContext } from "../../contexts/themecontext";
 
 const container = {
   hidden: { opacity: 0, y: 100, transition: { when: "afterChildren" } },
@@ -31,8 +32,9 @@ const child = {
 };
 const Contact = () => {
   const { updateSection } = useContext(SectionContext);
+  const { currentThemeColors } = useContext(ThemeContext);
   const { ref, inView } = useInView({ threshold: 0.1 });
- 
+
   useEffect(() => {
     updateSection("contact", inView);
   }, [inView]);
@@ -48,8 +50,10 @@ const Contact = () => {
         duration: 1,
       }}
       viewport={{ once: true }}
+      themeColors={currentThemeColors}
     >
       <ConnectText
+        themeColors={currentThemeColors}
         as={motion.h2}
         initial={{ opacity: 0, y: 100, scale: 0.5 }}
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -65,19 +69,40 @@ const Contact = () => {
 
       <div className="contact-info">
         <LinksContainer>
-          <ConnectLinkText>
+          <ConnectLinkText
+            themeColors={currentThemeColors}
+            href="mailto:vivian.wt.dv@gmail.com"
+          >
             {" "}
-            <EmailIcon width={"25px"} height={"25px"} />
+            <EmailIcon
+              width={"25px"}
+              height={"25px"}
+              fill={currentThemeColors.text}
+            />
             vivian.wt.dv@gmail.com
           </ConnectLinkText>
           |
-          <ConnectLinkText href="https://www.linkedin.com/in/vivian-tong-35726757/">
-            <LinkedInIcon width={"25px"} height={"25px"} />
+          <ConnectLinkText
+            themeColors={currentThemeColors}
+            href="https://www.linkedin.com/in/vivian-tong-35726757/"
+          >
+            <LinkedInIcon
+              width={"25px"}
+              height={"25px"}
+              fill={currentThemeColors.text}
+            />
             LinkedIn
           </ConnectLinkText>
           |{" "}
-          <ConnectLinkText href="https://github.com/macrobee/">
-            <GithubIcon width={"25px"} height={"25px"} />
+          <ConnectLinkText
+            themeColors={currentThemeColors}
+            href="https://github.com/macrobee/"
+          >
+            <GithubIcon
+              width={"25px"}
+              height={"25px"}
+              fill={currentThemeColors.text}
+            />
             Github
           </ConnectLinkText>
         </LinksContainer>

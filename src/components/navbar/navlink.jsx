@@ -5,30 +5,43 @@ import { SectionContext } from "../../contexts/currentsectioncontext";
 
 import { LinkText } from "../projects/projectlist.styles";
 
-import { themeColors } from "../../colors/colors";
+import { ThemeContext } from "../../contexts/themecontext";
 
 const NavLinkText = styled(LinkText)`
   font-size: 1.5rem;
   padding-left: 1rem;
+  border-left: 20px solid
+    ${(props) =>
+      props.status === "active"
+        ? props.themeColors.main
+        : props.themeColors.text};
+  color: ${(props) => props.themeColors.text};
   ${(props) =>
     props.status === "active"
-      ? `filter: drop-shadow(0 0 10px ${themeColors.main}); transform: scale(1.1);`
+      ? `filter: drop-shadow(0 0 10px ${props.themeColors.main}); font-size: 2rem;`
       : null}
+  :hover {
+    transform: scale(1);
+  }
 `;
 
 const NavLink = ({ text, to }) => {
   const { section } = useContext(SectionContext);
+  const { currentThemeColors } = useContext(ThemeContext);
   const [isActiveSection, setIsActiveSection] = useState(false);
-  
+
   useEffect(() => {
-    console.log("hello" + text.toLowerCase() + " " + section);
     section === text.toLowerCase()
       ? setIsActiveSection(true)
       : setIsActiveSection(false);
   }, [section]);
 
   return (
-    <NavLinkText href={to} status={isActiveSection ? "active" : null}>
+    <NavLinkText
+      themeColors={currentThemeColors}
+      href={to}
+      status={isActiveSection ? "active" : null}
+    >
       {text}
     </NavLinkText>
   );
