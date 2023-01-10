@@ -14,8 +14,12 @@ import { ReactComponent as StyledComponentsIcon } from "../../assets/styled.svg"
 // import { ReactComponent as FirebaseIcon } from "../../assets/firebase.svg";
 
 import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useContext, useEffect } from "react";
 
-import { ToolsContainer } from "./tools.styles.jsx";
+import { SectionContext } from "../../contexts/currentsectioncontext";
+
+import { ToolsContainer, ToolsSectionContainer } from "./tools.styles.jsx";
 
 const toolsList = [
   { name: "React", icon: <ReactIcon width="45px" height="45px" />, key: 1 },
@@ -42,9 +46,17 @@ const toolsList = [
 ];
 
 function Tech() {
+  const { updateSection } = useContext(SectionContext);
+  const { ref, inView } = useInView({threshold: 0.2});
+
+
+  useEffect(() => {
+    updateSection("tech", inView);
+  }, [inView]);
   return (
-    <ToolsContainer
+    <ToolsSectionContainer
       as={motion.div}
+      id="tech-section"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{
@@ -53,12 +65,13 @@ function Tech() {
       }}
       viewport={{ once: true }}
     >
-      <div className="wrapper">
+      <h2>Tools I use</h2>
+
+      <ToolsContainer ref={ref}>
         {/* <img src="" alt="image" /> */}
-        <h2 className="header">Tools I use</h2>
         <IconsList list={toolsList} />
-      </div>
-    </ToolsContainer>
+      </ToolsContainer>
+    </ToolsSectionContainer>
   );
 }
 export default Tech;

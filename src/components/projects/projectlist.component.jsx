@@ -1,23 +1,33 @@
-import { ProjectListContainer } from "./projectlist.styles";
+import { motion } from "framer-motion";
+import { ProjectListContainer, LinksContainer, LinkText } from "./projectlist.styles";
 import { ProjectContainer } from "./project.styles";
 import { PreviewImage } from "./previewimage.styles";
 
 const ProjectList = (props) => {
     return (
-      <ProjectListContainer className="project-list-container">
+      <ProjectListContainer className="project-list-container"  >
         {props.list.map((project) => {
           return (
-            <ProjectContainer className="project-container">
+            <ProjectContainer as={motion.div}
+            initial={{ opacity: 0, y:-100 }}
+            whileInView={{ opacity: 1, y:0 }}
+            transition={{
+              ease: "easeInOut",
+              duration: 1,
+            }}
+            viewport={{ once: true }}>
               <div className="img-container">
-                <PreviewImage
-                  src={project.source}
-                  alt={project.imgDescription}
-                  width="350px"
-                />
-                <div className="project-links">
-                  <a href={project.preview}>Live Preview</a>
-                  <a href={project.code}>Code</a>
-                </div>
+                <a href={project.preview}>
+                  <PreviewImage
+                    src={project.source}
+                    alt={project.imgDescription}
+                    width="350px"
+                  />
+                </a>
+                <LinksContainer className="project-links">
+                  <LinkText href={project.preview}>Live Preview</LinkText> | 
+                  <LinkText href={project.code}>Source Code</LinkText>
+                </LinksContainer>
               </div>
               <div className="project-info">
                 <h3>{project.title}</h3>

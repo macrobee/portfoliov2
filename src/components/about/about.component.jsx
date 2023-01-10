@@ -1,31 +1,84 @@
-import { motion } from "framer-motion";
-import { AboutSection } from "./about.styles";
+import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useContext, useEffect } from "react";
 
+import { SectionContext } from "../../contexts/currentsectioncontext";
+
+import {
+  AboutSection,
+  AboutContent,
+  BigName,
+  RoundImage,
+  FlexDiv,
+  StaggeredDiv,
+  LoadingBackground,
+} from "./about.styles";
+
+const itemMain = {
+  hidden: { opacity: 0, y: 100, transition: { when: "afterChildren" } },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { when: "beforechildren", staggerChildren: 0.3 },
+  },
+  transition: { ease: "linear", duration: 1 },
+};
+const child = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+  },
+};
+const grandChild = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { delay: 1 },
+  },
+};
 const About = () => {
+  const { updateSection } = useContext(SectionContext);
+  const { ref, inView } = useInView({ threshold: 0.1 });
+
+  useEffect(() => {
+    updateSection("about", inView);
+  }, [inView]);
   return (
-    <AboutSection
-      as={motion.div}
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{
-        ease: "linear",
-        duration: 1,
-      }}
-      viewport={{ once: true }}
-      className="page-contents"
-    >
-      <h1>
-        Hi, I'm <span className="my-name">Vivian</span>
-      </h1>
-      <div className="profile-info">
-        <img src="../../facesquare.png" alt="cartoon of myself" width="200px" />
-        <p>
+    <AboutSection id="about-section" ref={ref}>
+      <FlexDiv
+        as={motion.div}
+        initial={{ opacity: 0, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          ease: "easeInOut",
+          duration: 1,
+        }}
+        viewport={{ once: true }}
+      >
+        <StaggeredDiv>
+          <span>Hi,</span> <span>I'm</span>
+        </StaggeredDiv>{" "}
+        <BigName>Vivian</BigName>
+      </FlexDiv>
+      <AboutContent
+        as={motion.div}
+        initial={{ opacity: 0, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          ease: "easeInOut",
+          duration: 1,
+          delay: 0.5,
+        }}
+      >
+        <RoundImage src="../../facesquare.png" alt="cartoon of myself" />
+        <motion.p>
           I'm a self-taught front-end developer based in Toronto, Canada. My
           background in biology and education has fueled my curiosity for the
           world and given me a drive for learning how things work. I love
           building, solving puzzles, and biking.
-        </p>
-      </div>
+        </motion.p>
+      </AboutContent>
     </AboutSection>
   );
 };

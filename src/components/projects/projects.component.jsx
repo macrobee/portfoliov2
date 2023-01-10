@@ -1,4 +1,8 @@
-import {motion} from 'framer-motion';
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useContext, useEffect } from "react";
+
+import { SectionContext } from "../../contexts/currentsectioncontext";
 import ProjectList from "./projectlist.component";
 import { ProjectsSectionContainer } from "./projectlist.styles";
 
@@ -45,18 +49,25 @@ goals and highlights the tasks with the closest deadlines. Task information is s
 ];
 
 const Projects = () => {
+  const { updateSection } = useContext(SectionContext);
+  const { ref, inView } = useInView({ threshold: 0.1 });
+   
+  useEffect(() => {
+    updateSection('projects', inView);
+  }, [inView]);
   return (
-    <ProjectsSectionContainer
-      as={motion.div}
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{
-        ease: "linear",
-        duration: 1,
-      }}
-      viewport={{ once: true }}
-    >
-      <h2>My recent projects</h2>
+    <ProjectsSectionContainer ref={ref} id="projects-section">
+      <motion.h2
+        initial={{ opacity: 0, y: -100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          ease: "linear",
+          duration: 1,
+        }}
+        viewport={{ once: true }}
+      >
+        My recent projects
+      </motion.h2>
 
       <ProjectList list={projectInfo} />
     </ProjectsSectionContainer>
