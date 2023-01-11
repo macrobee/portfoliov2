@@ -48,20 +48,35 @@ const About = () => {
 
   return (
     <AboutSection themeColors={currentThemeColors} id="about-section" ref={ref}>
-      <FlexDiv
-        as={motion.div}
-        initial={{ opacity: 0, y: 100 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{
-          ease: "easeInOut",
-          duration: 1,
-        }}
-        viewport={{ once: true }}
-      >
+      <FlexDiv>
         <StaggeredDiv>
-          <span>Hi,</span> <span>I'm</span>
+          <motion.span
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ ease: "linear", delay: 0.3 }}
+            viewport={{ once: true }}
+          >
+            Hi,
+          </motion.span>{" "}
+          <motion.span
+            initial={{ opacity: 0, x: 100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ ease: "linear", delay: 0.7 }}
+            viewport={{ once: true }}
+          >
+            I'm
+          </motion.span>
         </StaggeredDiv>{" "}
-        <BigName themeColors={currentThemeColors}>Vivian</BigName>
+        <BigName
+          as={motion.span}
+          initial={{ opacity: 0, y:100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ ease: "linear", delay: 1 }}
+          viewport={{ once: true }}
+          themeColors={currentThemeColors}
+        >
+          Vivian
+        </BigName>
       </FlexDiv>
       <AboutContent
         as={motion.div}
@@ -70,16 +85,17 @@ const About = () => {
         transition={{
           ease: "easeInOut",
           duration: 1,
-          delay: 0.5,
+          delay: 1.5,
         }}
+        viewport={{ once: true }}
       >
         <RoundImage src="../../facesquare.png" alt="cartoon of myself" />
-        <motion.p>
+        <p>
           I'm a self-taught front-end developer based in Toronto, Canada. My
           background in biology and education has fueled my curiosity for the
           world and given me a drive for learning how things work. I love
           tinkering, solving puzzles, and biking.
-        </motion.p>
+        </p>
       </AboutContent>
     </AboutSection>
   );

@@ -12,29 +12,27 @@ import {
 import { ProjectContainer } from "./project.styles";
 import { PreviewImage } from "./previewimage.styles";
 
-import './project.styles.scss';
+import "./project.styles.scss";
 
 const ProjectList = (props) => {
   const { currentThemeColors } = useContext(ThemeContext);
 
-  
+  console.log(`hello`);
   return (
-    <ProjectListContainer className="project-list-container">
+    <ProjectListContainer
+      as={motion.div}
+      initial={{ opacity: 0, y: -100 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{
+        ease: "easeInOut",
+        duration: 1,
+      }}
+      viewport={{ once: true }}
+    >
       {props.list.map((project) => {
+        console.log(`once`);
         return (
-          <ProjectContainer
-            as={motion.div}
-            initial={{ opacity: 0, y: -100 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{
-              ease: "easeInOut",
-              duration: 1,
-            }}
-            viewport={{ once: true }}
-            key={uniqid()}
-            themeColors={currentThemeColors}
-   
-          >
+          <ProjectContainer key={uniqid()} themeColors={currentThemeColors}>
             <div className="img-container">
               <a href={project.preview}>
                 <PreviewImage

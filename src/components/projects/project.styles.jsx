@@ -5,7 +5,6 @@ export const ProjectContainer = styled.div`
   width: 100%;
   justify-content: center;
   align-items: baseline;
-  gap: 2rem;
   flex-wrap: wrap;
   border: 2px solid ${(props) => props.themeColors.text};
   border-radius: 10px;

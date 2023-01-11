@@ -12,15 +12,7 @@ import { PreviewImage } from "./previewimage.styles";
 
 const Project = ({ project }) => {
   const { currentThemeColors } = useContext(ThemeContext);
-  const { updateSection, currentSection } = useContext(SectionContext);
-  const { ref, inView } = useInView({ threshold: 0.1 });
 
-//   useEffect(() => {
-//     if (currentSection !== "projects") {
-//       updateSection("projects", inView);
-//     }
-//     console.log('oh  no');
-//   }, [inView]);
 console.log(project);
   return (
     <ProjectContainer
@@ -34,7 +26,6 @@ console.log(project);
       viewport={{ once: true }}
       key={uniqid()}
       themeColors={currentThemeColors}
-      ref={ref}
     >
       <div className="img-container">
         <a href={project.preview}>
