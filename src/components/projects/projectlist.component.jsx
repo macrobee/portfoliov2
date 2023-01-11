@@ -12,6 +12,8 @@ import {
 import { ProjectContainer } from "./project.styles";
 import { PreviewImage } from "./previewimage.styles";
 
+import './project.styles.scss';
+
 const ProjectList = (props) => {
   const { currentThemeColors } = useContext(ThemeContext);
 
@@ -57,7 +59,7 @@ const ProjectList = (props) => {
             </div>
             <div className="project-info">
               <h3>{project.title}</h3>
-              <p>{project.description}</p>
+              <p className="project-description">{project.description}</p>
               <p>Tags: {project.tags}</p>
             </div>
           </ProjectContainer>

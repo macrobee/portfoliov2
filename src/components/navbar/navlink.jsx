@@ -18,10 +18,14 @@ const NavLinkText = styled(LinkText)`
   color: ${(props) => props.themeColors.text};
   ${(props) =>
     props.status === "active"
-      ? `filter: drop-shadow(0 0 10px ${props.themeColors.main}); font-size: 2rem;`
+      ? `filter: drop-shadow(0 0 10px ${props.themeColors.main}); font-size: 2rem; @media (max-width: 800px) {font-size: 1rem;}`
       : null}
   :hover {
     transform: scale(1);
+  }
+  @media (max-width: 800px) {
+    border-left: none;
+    font-size: 1rem;
   }
 `;
 

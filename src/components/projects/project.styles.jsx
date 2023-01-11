@@ -12,4 +12,7 @@ export const ProjectContainer = styled.div`
   padding: 2rem 3rem;
   box-sizing: border-box;
   background-color: ${(props) => props.themeColors.background};
+  @media (max-width: 800px) {
+    padding: 0.5rem;
+}
 `;

@@ -8,6 +8,12 @@ export const ContactContainer = styled.div`
   border: 2px solid ${(props) => props.themeColors.text};
   padding: 2rem;
   box-sizing: border-box;
+  @media (max-width: 800px) {
+    width: 80%;
+  }
+  @media (max-width: 500px) {
+    width: 100%;
+  }
 `;
 
 export const ConnectText = styled.h2`
