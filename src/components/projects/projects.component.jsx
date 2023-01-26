@@ -8,6 +8,15 @@ import { ProjectsSectionContainer } from "./projectlist.styles";
 
 const projectInfo = [
   {
+    source: "../../../screenshots/sshp.png",
+    imgDescription: "Preview of the Saddle Sisters of High Park website",
+    title: "Saddle Sisters of High Park Landing page",
+    description: `An informational site for the Saddle Sisters of High Park cycling group. Uses the Framer Motion library to create smooth transitions between pages. Components are styled with Tailwind CSS`,
+    tags: "React, Hooks, Framer Motion, React Router, Tailwind CSS",
+    preview: "https://saddlesisters.netlify.app/",
+    code: "https://github.com/macrobee/sshp",
+  },
+  {
     source: "../../../screenshots/nutrition.png",
     imgDescription: "Preview of Nutrition Tracker",
     title: "Am I eating enough? Weekly Nutrition Tracker",
@@ -42,9 +51,9 @@ goals and highlights the tasks with the closest deadlines. Task information is s
     title: "Strava Dashboard (In Progress)",
     description:
       "Strava activity summary app that connects to users' Strava account and returns a shareable summary of individual/weekly activities",
-    tags: "React, Hooks, SASS, REST API, Strava",
-    preview: "https://github.com/macrobee/",
-    code: "https://github.com/macrobee/",
+    tags: "React, Hooks, SASS, REST API, Strava, OAuth2.0",
+    preview: "https://github.com/macrobee/stravasummary",
+    code: "https://github.com/macrobee/stravasummary",
   },
 ];
 
